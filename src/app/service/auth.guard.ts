@@ -1,13 +1,17 @@
-/*import { CanActivateFn, Router } from '@angular/router';
+import { inject } from '@angular/core';
+import { CanActivateFn } from '@angular/router';
+import { Router } from '@angular/router';
 
-export const authGuard: CanActivateFn = (route) => {
+export const loginGuard: CanActivateFn = (route, state) => {
+  const router = inject(Router);
   const token = localStorage.getItem('itcast-token');
-  const router = route.injector.get(Router); // 注入 Router
-
-  if (!!token) {
+  // 如果token有值，表示登录成功，继续跳转，否则跳转到首页
+  if (token) {
+    console.log("登陆成功");
     return true;
-  } else {
-    // 如果用户未经身份验证，则重定向到登录页
-    return router.createUrlTree(['/login']);
   }
-};*/
+  console.log("登陆失败");
+  router.navigate(['/login']).then(r => {});
+  return false;
+};
+

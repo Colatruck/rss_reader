@@ -4,9 +4,6 @@ import {LoginService} from "../service/login.service";
 import {Router} from "@angular/router";
 import {NgIf} from "@angular/common";
 
-interface Token{
-  token:string
-}
 
 @Component({
   selector: 'app-login',
@@ -35,12 +32,13 @@ export class LoginComponent implements OnInit{
       }
 
       this.loginService.login(loginParams).subscribe(
-        (res:Token) => {
-          // 处理成功的登录响应
-          console.log(res);
-          //存储token
-          localStorage.setItem('itcast-token',res.token);
-          //登录成功之后实现页面跳转
+        (res: string) => {
+          // 处理成功的登录响应，假设令牌是一个字符串
+          console.log("登录成功，令牌值为:",res['token']);
+          // 存储令牌
+          localStorage.setItem('itcast-token', res['token']);
+
+          // 登录成功之后实现页面跳转
           this.router.navigate(['/list']).then(r => {});
         },
         (error) => {
@@ -48,6 +46,7 @@ export class LoginComponent implements OnInit{
           console.error('登录失败', error);
         }
       );
+
     } else {
       // 表单无效，标记所有控件为脏状态以显示验证消息
       this.loginForm.markAllAsTouched();
@@ -75,3 +74,4 @@ export class LoginComponent implements OnInit{
     return this.loginForm.get('password');
   }
 }
+
