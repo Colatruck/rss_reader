@@ -1,0 +1,95 @@
+<ng-container>
+  <section>
+    <ng-container *ngIf="!isModalActive">
+    <nav class="bg-white-500 p-6">
+      <div class="flex justify-end">
+        <div class="flex items-center gap-4">
+
+          <button class="bg-gray-300 p-2 w-10 h-10 rounded-md shadow-md flex items-center justify-center space-x-1" (click)="removeFeedItems()">
+            <span *ngIf="feedItemList.length" class="text-gray-700">{{ feedItemList.length }}</span>
+            <fa-icon [icon]="'check'" class="text-green-500"></fa-icon>
+          </button>
+
+          <button class="bg-blue-500 p-2 text-white w-10 h-10 rounded-md shadow-md flex items-center justify-center space-x-1" (click)="updateFeedItems()">
+            <fa-icon [icon]="isLoadingActive ? 'spinner' : 'sync'" [spin]="isLoadingActive" class="text-white"></fa-icon>
+          </button>
+
+
+        </div>
+      </div>
+    </nav>
+  </ng-container>
+
+    <!--    <div class="container mx-auto mt-6" *ngIf="feedItemList.length">-->
+    <!--      <app-feed-card *ngFor="let item of feedItemList" [feedItem]="item" (click)="toggleModal(item)"></app-feed-card>-->
+    <!--    </div>-->
+
+    <div class="container mx-auto mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
+         *ngIf="feedItemList.length">
+      <ng-container *ngIf="!isModalActive">
+        <app-feed-card *ngFor="let item of feedItemList" [feedItem]="item" (click)="toggleModal(item)"
+                       class="w-full"></app-feed-card>
+      </ng-container>
+    </div>
+
+    <ng-container *ngIf="!isModalActive" >
+    <div class="flex justify-center mt-6" *ngIf="feedItemList.length">
+      <button type="button" class="w-full bg-red-500 p-4 text-white" (click)="removeFeedItems()">
+        Delete All
+      </button>
+    </div>
+    </ng-container>
+  </section>
+
+  <div class="text-center py-6" *ngIf="isAboutActive">
+    <div class="container mx-auto">
+      <p>...</p>
+    </div>
+  </div>
+
+  <div class="text-center py-6" *ngIf="!feedItemList.length && !isAboutActive">
+    <div class="container mx-auto">
+      <h1 class="text-xl">
+        All done
+      </h1>
+      <h2 class="text-lg">
+        Articles already read
+      </h2>
+    </div>
+  </div>
+
+  <!--<article class="fixed inset-0 flex items-center justify-center z-50" [ngClass]="{'hidden': !isModalActive}">
+    <div class="fixed inset-0 bg-black opacity-50" (click)="closeModal()"></div>
+    <div class="modal-card max-w-3xl mx-auto bg-white rounded shadow-lg z-10 overflow-y-auto max-h-screen">
+      <header class="modal-card-head bg-gray-100 border-b p-4">
+        <p class="modal-card-title text-xl font-bold" *ngIf="feedItem">{{ feedItem.title }}</p>
+      </header>
+      <section class="modal-card-body p-4">
+        <div [innerHTML]="feedItem.content | safeHtmlPipe"></div>
+      </section>
+      <footer class="modal-card-foot bg-gray-100 border-t p-4 flex justify-end">
+        <button class="button bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded"
+                (click)="closeModal()">Close
+        </button>
+      </footer>
+    </div>
+  </article>-->
+
+  <div *ngIf="isModalActive">
+    <div class="mx-auto bg-white rounded shadow-lg z-10 overflow-y-auto ">
+      <header class="modal-card-head bg-gray-100 border-b p-4">
+        <p class="text-xl font-bold" *ngIf="feedItem">{{ feedItem.title }}</p>
+      </header>
+      <section class="p-4">
+        <div [innerHTML]="feedItem.content | safeHtmlPipe"></div>
+      </section>
+      <footer class="bg-gray-100 border-t p-4 flex justify-end">
+        <button class="button bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded" (click)="closeModal()">Close</button>
+      </footer>
+    </div>
+  </div>
+
+
+</ng-container>
+
+

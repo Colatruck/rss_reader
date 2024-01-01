@@ -1,0 +1,92 @@
+
+<section class="bg-white shadow py-6">
+  <div class="container mx-auto flex justify-center items-center">
+    <div class="flex flex-col md:flex-row items-center">
+      <div class="flex justify-center mb-4 md:mb-0 md:mr-4">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-32 text-black  transform hover:scale-110 transition duration-300 ease-in-out" viewBox="0 0 20 20" fill="currentColor">
+          <!-- 替换为你自己的 logo -->
+          <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+          <path fill-rule="evenodd" d="M5 3a1 1 0 00-1 1v12a1 1 0 001 1h10a1 1 0 001-1V4a1 1 0 00-1-1H5zm10 12H5V5h10v10z" clip-rule="evenodd" />
+        </svg>
+      </div>
+      <div class="flex-grow md:flex md:items-center">
+        <div class="text-left">
+          <h2 class="text-4xl font-bold mb-2">Ang Rss Reader</h2>
+        </div>
+      </div>
+    </div>
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 md:hidden" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+    </svg>
+  </div>
+</section>
+
+
+<section class="py-6 flex flex-wrap">
+  <div class="container mx-auto">
+    <div class="flex flex-wrap justify-between">
+
+      <aside class="md:sticky md:top-0 md:h-screen md:w-1/4 shadow-lg border-r-1 border-gray-300 px-2 py-2">
+        <nav>
+          <p class="text-lg mb-2">Feeds</p>
+
+          <div>
+
+            <div class="flex items-center mb-1 px-1 py-1.5 rounded-lg border border-gray-300 hover:bg-blue-100" *ngFor="let feed of feedList">
+              <a class="flex-grow"
+                 (click)="getUrlFeed(feed.url)">
+                {{ feed.title }}
+              </a>
+              <a class="p-1" (click)="removeFeed(feed)" [class.text-red-500]="urlParent === feed.url">
+                <span class="text-gray-500 hover:text-red-500">
+                  <fa-icon [icon]="['fas', 'trash']"></fa-icon>
+                </span>
+              </a>
+            </div>
+
+
+          </div>
+
+          <p class="text-lg mb-2 mt-4">Add New Feed below</p>
+          <ul>
+            <li>
+              <button (click)="toggleForm()" class="flex-grow px-3 py-2 text-left rounded-lg border border-gray-300 hover:bg-blue-100">
+                <span *ngIf="!isFormActive">Open Form</span>
+                <span *ngIf="isFormActive">Close Form</span>
+              </button>
+            </li>
+          </ul>
+
+
+          <form (ngSubmit)="addFeed(form)" #form="ngForm" *ngIf="isFormActive">
+            <div class="mb-4">
+              <input type="text" id="feed" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+                     placeholder="Title" [(ngModel)]="feed.title" name="title" required #title="ngModel" maxlength="40">
+              <div *ngIf="title.invalid && title.touched" class="text-red-500 text-sm mt-1">
+                Title is required
+              </div>
+            </div>
+            <div class="mb-4">
+              <div class="flex">
+                <input type="text" id="url" class="flex-grow px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+                       name="url" [(ngModel)]="feed.url" placeholder="http://rss.example.com/feed" #url="ngModel"
+                       required maxlength="120">
+                <button class="ml-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:opacity-50"
+                        [disabled]="form.invalid" type="submit">Add</button>
+              </div>
+              <div *ngIf="url.invalid && url.touched" class="text-red-500 text-sm mt-1">
+                Rss is required
+              </div>
+            </div>
+          </form>
+        </nav>
+      </aside>
+      <main class="w-full md:w-3/4 md:pl-2 px-2 shadow-lg border-l-1 border-gray-300">
+        <app-feed-list [childUrl]="urlParent"></app-feed-list>
+      </main>
+    </div>
+  </div>
+</section>
+
+<footer class="py-4 text-center">
+</footer>

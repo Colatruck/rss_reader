@@ -1,0 +1,20 @@
+<!--<div class="flex p-4 hover:shadow-lg cursor-pointer transition duration-300">-->
+<!--    <div class="flex-none w-24 h-24">-->
+<!--        <img [src]="FeedItem.thumbnail" alt="{{FeedItem.title}}">-->
+<!--    </div>-->
+<!--    <div class="flex-grow ml-4">-->
+<!--        <p>-->
+<!--            <strong>{{FeedItem.author}}</strong> <small>· {{FeedItem.pubDate | date:'dd-MM-yyyy'}}</small>-->
+<!--            <br>-->
+<!--            {{FeedItem.title}}-->
+<!--        </p>-->
+<!--    </div>-->
+<!--</div>-->
+<div class="flex flex-col border border-gray-300 rounded-lg overflow-hidden shadow-lg transition duration-300 hover:shadow-xl cursor-pointer">
+    <img class="w-full object-cover h-48" [src]="feedItem.thumbnail" alt="{{feedItem.title}}">
+    <div class="p-4">
+        <p class="text-lg font-semibold">{{feedItem.title}}</p>
+        <p class="text-sm text-gray-600">{{feedItem.author}} · {{feedItem.pubDate | date:'dd-MM-yyyy'}}</p>
+        <p class="mt-2 text-gray-700">{{feedItem.description}}</p>
+    </div>
+</div>
