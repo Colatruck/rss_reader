@@ -13,15 +13,15 @@ import {FeedItems} from "../model/FeedItems";
 export class FeedService {
 
     constructor(private http: HttpClient) {
-        // let feed: any = JSON.parse(localStorage.getItem("feeds")) || [];
+        let feed: any = JSON.parse(localStorage.getItem("feeds")) || [];
 
-        // if (feed.length === 0) {
-        //     this.feed = [{
-        //         title: 'G1 Brasil',
-        //         url: 'http://g1.globo.com/dynamo/brasil/rss2.xml'
-        //     }];
-        //     localStorage.setItem("feeds", JSON.stringify(this.feed));
-        // }
+        if (feed.length === 0) {
+            this.feed = [{
+                title: 'G1 Brasil',
+                url: 'http://g1.globo.com/dynamo/brasil/rss2.xml'
+            }];
+            localStorage.setItem("feeds", JSON.stringify(this.feed));
+        }
     }
 
     private cors: string = `https://cors.eu.org/`;
