@@ -1,12 +1,11 @@
 import { Routes } from '@angular/router';
 import {HomeComponent} from "./home/home.component";
-import {TestComponent} from "./test/test.component";
+import{LoginComponent} from "./login/login.component";
 
 export const routes: Routes = [
 
-  // { path: '', pathMatch: 'full', redirectTo: 'home' },
+  { path: '', pathMatch: 'full', redirectTo: 'login' },
+  { path: 'login', component: LoginComponent },
     { path: 'list', component: HomeComponent },
-    { path: 'test', component: TestComponent },
-  // { path: 'details/:index', loadComponent: () => import('./Dogs/dog-view.component').then(m => m.DogViewComponent) }
 
 ];
