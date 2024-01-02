@@ -17,8 +17,8 @@ export class FeedService {
 
         if (feed.length === 0) {
             this.feed = [{
-                title: 'Reader digest',
-                url: 'https://www.rd.com/feed/'
+              title: '文汇报',
+              url: 'https://rsshub.app/whb/bihui'
             }];
             localStorage.setItem("feeds", JSON.stringify(this.feed));
         }
