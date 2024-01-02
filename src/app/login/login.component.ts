@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {LoginService} from "../service/login.service";
-import {Router} from "@angular/router";
+import {Router,RouterLink} from "@angular/router";
 import {NgIf} from "@angular/common";
 
 
@@ -10,7 +10,8 @@ import {NgIf} from "@angular/common";
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    NgIf
+    NgIf,
+    RouterLink
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
