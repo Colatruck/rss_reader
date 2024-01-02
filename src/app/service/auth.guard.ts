@@ -30,7 +30,7 @@ export const loginGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: 
   }
 
   // 将验证逻辑转换为返回Observable<boolean>
-  return http.post<any>('https://shiny-waffle-74www79qgj42r6jj-9000.app.github.dev/auth/verify', { token }).pipe(
+  return http.post<any>('https://service-pd66a0kt-1318426046.cd.tencentapigw.com/release/auth/verify', { token }).pipe(
     map(response => {
       console.log("登陆成功");
       console.log(response)

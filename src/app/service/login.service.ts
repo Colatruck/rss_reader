@@ -12,6 +12,6 @@ export class LoginService {
 
   constructor(private http:HttpClient) { }
   login(loginForm:LoginForm){
-    return this.http.post('https://shiny-waffle-74www79qgj42r6jj-9000.app.github.dev/auth/login',loginForm)
+    return this.http.post('https://service-pd66a0kt-1318426046.cd.tencentapigw.com/release/auth/login',loginForm)
   }
 }

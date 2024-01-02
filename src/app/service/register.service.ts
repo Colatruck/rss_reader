@@ -12,6 +12,6 @@ export class RegisterService {
 
   constructor(private http:HttpClient) { }
   register(registerForm:RegisterForm){
-    return this.http.post('https://shiny-waffle-74www79qgj42r6jj-9000.app.github.dev/auth/register',registerForm)
+    return this.http.post('https://service-pd66a0kt-1318426046.cd.tencentapigw.com/release/auth/register',registerForm)
   }
 }
