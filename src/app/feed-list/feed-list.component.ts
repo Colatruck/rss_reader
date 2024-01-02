@@ -3,7 +3,6 @@ import {CommonModule, DOCUMENT} from "@angular/common";
 import {FeedService} from '../service/feeds.service';
 import {SafeHtmlPipe} from "../service/safe-html-pipe";
 import {FeedItems} from "../model/FeedItems";
-import {FeedViewComponent} from "../feed-view/feed-view.component";
 import {FeedCardComponent} from "../feed-card/feed-card.component";
 import {faCheck, faFontAwesome, faMoon, faSpinner, faSun, faSync} from "@fortawesome/free-solid-svg-icons";
 import {FaIconLibrary, FontAwesomeModule} from "@fortawesome/angular-fontawesome";
@@ -11,7 +10,7 @@ import {FaIconLibrary, FontAwesomeModule} from "@fortawesome/angular-fontawesome
 @Component({
     selector: 'app-feed-list',
     standalone: true,
-    imports: [CommonModule, SafeHtmlPipe, FeedViewComponent, FeedCardComponent,FontAwesomeModule],
+    imports: [CommonModule, SafeHtmlPipe, FeedCardComponent,FontAwesomeModule],
     templateUrl: './feed-list.component.html',
     styleUrl: './feed-list.component.css'
 })
@@ -86,7 +85,6 @@ export class FeedListComponent implements OnInit, OnChanges {
       if (feedItems.length) {
         this.isLoadingActive = false;
         feedItems.map((map: any) => {
-          //find feeds repeated
           const existItem = this.feedItemList.find(item => item.title == map.title);
           if (existItem) {
             console.log("Feed repeated");
@@ -95,7 +93,6 @@ export class FeedListComponent implements OnInit, OnChanges {
           }
         })
         this.isAboutActive = false;
-        // filter non-expired feed items
         const FeedItemsNoExpired = this.feedItemList.filter((item: any) => new Date() < item.expiryDate);
         this.feedService.saveLocalFeedItems(this.childUrl, FeedItemsNoExpired);
       } else {

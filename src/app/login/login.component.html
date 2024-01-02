@@ -1,0 +1,31 @@
+<body style="background-image: url('../../assets/imag/bg.webp');" class="bg-blue-500 bg-cover bg-center flex items-center justify-center h-screen">
+  <form [formGroup]="loginForm" (ngSubmit)="submitForm()">
+    <div class="bg-white p-8 rounded shadow-md w-96">
+      <h2 class="text-2xl font-semibold mb-6 text-gray-800">登录</h2>
+      <div class="mb-4">
+        <label class="block text-gray-600 text-sm font-medium mb-2">Username</label>
+        <input type="text" formControlName="username" placeholder="请输入用户名"
+               class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500">
+        <span *ngIf="username.invalid && (username.dirty || username.touched)">
+            <span *ngIf="username.errors['required']" class="text-red-600">用户名不能为空</span>
+            <span *ngIf="username.errors['minlength'] || username.errors['maxlength']" class="text-red-600">用户名长度为3-8位</span>
+          </span>
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-600 text-sm font-medium mb-2">Password</label>
+        <input type="password" formControlName="password" placeholder="请输入密码"
+               class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500">
+        <span *ngIf="password.invalid && (password.dirty || password.touched)">
+            <span *ngIf="password.errors['minlength']" class="text-red-600">密码不能少于6位</span>
+          </span>
+      </div>
+      <button type="submit" class="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700 focus:outline-none mb-4">
+        登录
+      </button>
+      <div class="flex justify-between items-center">
+        <a class="text-blue-500 hover:underline" [routerLink]="['/register']">注册</a>
+      </div>
+    </div>
+  </form>
+  </body>
+  

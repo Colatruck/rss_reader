@@ -17,8 +17,8 @@ export class FeedService {
 
         if (feed.length === 0) {
             this.feed = [{
-                title: 'G1 Brasil',
-                url: 'http://g1.globo.com/dynamo/brasil/rss2.xml'
+                title: 'Reader digest',
+                url: 'https://www.rd.com/feed/'
             }];
             localStorage.setItem("feeds", JSON.stringify(this.feed));
         }
@@ -86,7 +86,7 @@ export class FeedService {
         let parser = new Parser();
 
         const ZoneAwarePromise: any = parser.parseString(xml);
-        //get list of feed items
+
         const FeedItemList = ZoneAwarePromise.__zone_symbol__value.items;
 
         const itemsArray = [];
@@ -97,7 +97,7 @@ export class FeedService {
                 let htmlParser = new DOMParser();
                 let htmlDoc = htmlParser.parseFromString(content, "text/html");
 
-                /* Date from now more 30 days to expire */
+
                 let expiryDate = new Date(new Date().getTime() + (30 * 24 * 60 * 60 * 1000));
 
                 let thumbnail = "";
