@@ -83,6 +83,7 @@
       <section class="p-4">
         <div [innerHTML]="feedItem.content | safeHtmlPipe"></div>
       </section>
+      <a class="mt-2 text-blue-500 underline hover:text-blue-700 hover:underline" href="{{feedItem.link}}" target="_blank">{{feedItem.link}}</a>
       <footer class="bg-gray-100 border-t p-4 flex justify-end">
         <button class="button bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded" (click)="closeModal()">Close</button>
       </footer>
