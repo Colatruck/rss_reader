@@ -3,7 +3,6 @@ import {CommonModule, DOCUMENT} from "@angular/common";
 import {FeedService} from '../service/feeds.service';
 import {SafeHtmlPipe} from "../service/safe-html-pipe";
 import {FeedItems} from "../model/FeedItems";
-import {FeedViewComponent} from "../feed-view/feed-view.component";
 import {FeedCardComponent} from "../feed-card/feed-card.component";
 import {faCheck, faFontAwesome, faMoon, faSpinner, faSun, faSync} from "@fortawesome/free-solid-svg-icons";
 import {FaIconLibrary, FontAwesomeModule} from "@fortawesome/angular-fontawesome";
@@ -11,7 +10,7 @@ import {FaIconLibrary, FontAwesomeModule} from "@fortawesome/angular-fontawesome
 @Component({
     selector: 'app-feed-list',
     standalone: true,
-    imports: [CommonModule, SafeHtmlPipe, FeedViewComponent, FeedCardComponent,FontAwesomeModule],
+    imports: [CommonModule, SafeHtmlPipe, FeedCardComponent,FontAwesomeModule],
     templateUrl: './feed-list.component.html',
     styleUrl: './feed-list.component.css'
 })
