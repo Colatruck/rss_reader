@@ -17,8 +17,8 @@ export class FeedService {
 
         if (feed.length === 0) {
             this.feed = [{
-                title: 'G1 Brasil',
-                url: 'http://g1.globo.com/dynamo/brasil/rss2.xml'
+                title: 'Reader digest',
+                url: 'https://www.rd.com/feed/'
             }];
             localStorage.setItem("feeds", JSON.stringify(this.feed));
         }
