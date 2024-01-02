@@ -86,7 +86,6 @@ export class FeedListComponent implements OnInit, OnChanges {
       if (feedItems.length) {
         this.isLoadingActive = false;
         feedItems.map((map: any) => {
-          //find feeds repeated
           const existItem = this.feedItemList.find(item => item.title == map.title);
           if (existItem) {
             console.log("Feed repeated");
@@ -95,7 +94,6 @@ export class FeedListComponent implements OnInit, OnChanges {
           }
         })
         this.isAboutActive = false;
-        // filter non-expired feed items
         const FeedItemsNoExpired = this.feedItemList.filter((item: any) => new Date() < item.expiryDate);
         this.feedService.saveLocalFeedItems(this.childUrl, FeedItemsNoExpired);
       } else {
