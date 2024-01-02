@@ -6,10 +6,10 @@
       <label class="block text-gray-600 text-sm font-medium mb-2">Username</label>
       <input type="text" formControlName="username" placeholder="请输入用户名"
              class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500">
-      <span *ngif="username.invalid && (username.dirty || username.touched)">
-            <span *ngIf="username.errors['required']" class="text-red-600">用户名不能为空</span>
-            <span *ngIf="username.errors['minlength'] || username.errors['maxlength']" class="text-red-600">用户名长度为3-8位</span>
-          </span>
+      <span *ngIf="username.invalid && (username.dirty || username.touched)">
+          <span *ngIf="username.errors['required']" class="text-red-600">用户名不能为空</span>
+          <span *ngIf="username.errors['minlength'] || username.errors['maxlength']" class="text-red-600">用户名长度为3-8位</span>
+        </span>
     </div>
     <div class="mb-4">
       <label class="block text-gray-600 text-sm font-medium mb-2">Password</label>
